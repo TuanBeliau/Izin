@@ -10,7 +10,8 @@ $result = mysqli_query($is_connect, $query); // Menjalankan query pada database
 
 if (mysqli_num_rows($result) > 0) { // Jika query menghasilkan satu atau lebih bari
   session_start(); // Memulai sesi
-  $_SESSION['username'] = $username; // Menyimpan username dalam sesi header('Location: index.php'); // Mengalihkan ke halaman
+  $_SESSION['username'] = $username; // Menyimpan username dalam sesi header('Location: index.php'); // Mengalihkan ke 
+  $_SESSION['login'] = true;
   $_SESSION['id'] = $data['id'];
   header('Location: index.php');
 } 
