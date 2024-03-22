@@ -1,11 +1,16 @@
 <?php
+session_start(); // ketika mulai session harus ada sintak ini dulu
+if (!isset($_SESSION['login'])) {
+  header('location: login.php');
+}
 //1. Komeksi ke MySQL
 require_once("config/connect.php");
 //2. Membuat Query sesuai kebutuhan
 $query = "SELECT izin. *, guru.nama as nama_guru, bk.nama as nama_bk
           FROM izin 
           INNER JOIN guru ON guru.id = izin.guru_id 
-          inner join bk on bk.id  = izin.bk_id";
+          inner join bk on bk.id  = izin.bk_id
+          where siswa.id =".$_SESSION['login'];
 //3. Menjalankan Query
 $sql = mysqli_query($is_connect, $query);
 //var.dump($sql) //tips mengecek isi variabel menggunakan var_dump()
